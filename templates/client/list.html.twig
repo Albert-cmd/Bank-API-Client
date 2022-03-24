@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Llistat de clients{% endblock %}
+{% block body %}
+        <h1>Llistat de clients</h1>
+        <a href="{{ path('client_new') }}">+ Nou client</a>
+
+        {% for message in app.flashes('notice') %}
+              <strong>Success!</strong> {{ message }}
+        {% endfor %}
+
+          <table style="margin-top: 20px;margin-bottom: 10px;">
+              <thead>
+                  <tr>
+                      <th>DNI</th><th>Nom</th><th>Cognoms</th><th>Data de naixement</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for client in clients %}
+                      <tr>
+                          <td>{{ client.dni }}</td><td>{{ client.nom }}</td><td>{{ client.cognoms }}</td>
+                          <td>{{ client.dataN|date("d/m/Y") }}</td>
+                          <td>
+                            <a href="{{ path('client_edit', {'id': client.id}) }}">Editar</a>
+                            <a href="{{ path('client_delete', {'id': client.id}) }}">Eliminar</a>
+                          </td>
+                      </tr>
+                  {% else %}
+                      <tr>
+                          <td colspan="5">No hi ha clients.</td>
+                      </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+
+          <br>
+    <a href="{{ path('report_clients') }}">Descarrega en PDF.</a>
+{% endblock %}

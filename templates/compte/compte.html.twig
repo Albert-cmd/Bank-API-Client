@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+        <h1>{{ title }}</h1>
+        <a href="{{ path('compte_list') }}">&laquo; Torna</a>
+				<div style="margin-top: 20px">
+  	    	{{ form_start(form) }}
+		        	{{ form_widget(form) }}
+		    	{{ form_end(form) }}
+				</div>
+{% endblock %}

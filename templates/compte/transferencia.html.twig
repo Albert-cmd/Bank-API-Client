@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+        <h1>{{ title }}</h1>
+        {% for message in app.flashes('notice') %}
+              {{ message }}
+        {% endfor %}
+				<div style="margin-top: 20px">
+  	    	        {{ form_start(form, {'attr': { 'onsubmit':'return validateForm();'} }) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+				</div>
+{% endblock %}
